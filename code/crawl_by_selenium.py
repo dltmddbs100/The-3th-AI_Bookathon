@@ -28,7 +28,7 @@ def contain(data=None,column='contents',regex=None):
 
 
 # 신춘문예작
-## 동아일보
+''' 동아일보 '''
 
 driver=chrome_setting()
 title=[]
@@ -85,7 +85,8 @@ a=a[['refer','types','title','contents']]
 a.to_csv('/content/drive/MyDrive/AI_Bookathon/Crawl_data/신춘문예당선작/신춘_동아일보_소설.csv',index=False)
 
 
-## 경향신문
+''' 경향신문 '''
+
 book_lists=['https://www.khan.co.kr/culture/book/article/200812311640185',
             'https://www.khan.co.kr/culture/book/article/200912311708595',
             'https://www.khan.co.kr/culture/book/article/201712312051005',
@@ -153,7 +154,7 @@ a=a[['refer','types','title','contents']]
 a.to_csv('/content/drive/MyDrive/AI_Bookathon/Crawl_data/신춘문예당선작/신춘_경향신문_소설.csv',index=False)
 
 
-## 경인일보
+''' 경인일보 '''
 url_list=['http://m.kyeongin.com/view.php?key=20210104010006543',
           'http://m.kyeongin.com/view.php?key=20201228010005655',
           'http://m.kyeongin.com/view.php?key=20200102010000302',
@@ -215,7 +216,8 @@ a=a[['refer','types','title','contents']]
 a.to_csv('/content/drive/MyDrive/AI_Bookathon/Crawl_data/신춘문예당선작/신춘_경인일보_소설.csv',index=False)
 
 
-## 중앙 신인문학상
+''' 중앙 신인문학상 '''
+
 url_list=['https://www.joongang.co.kr/article/4137800#home',
           'https://www.joongang.co.kr/article/4137870#home',
           'https://www.joongang.co.kr/article/4137873#home',
@@ -237,7 +239,6 @@ url_list=['https://www.joongang.co.kr/article/4137800#home',
           'https://www.joongang.co.kr/article/22992634#home']
 
 driver=chrome_setting()
-
 title=[]
 content=[]
 
@@ -279,7 +280,8 @@ a=a[['refer','types','title','contents']]
 a.to_csv('/content/drive/MyDrive/AI_Bookathon/Crawl_data/신춘문예당선작/신춘_중앙신인문학상_소설.csv',index=False)
 
 
-## 세계일보
+''' 세계일보 '''
+
 driver=chrome_setting()
 title=[]
 content=[]
@@ -331,7 +333,8 @@ a=a[['refer','types','title','contents']]
 a.to_csv('/content/drive/MyDrive/AI_Bookathon/Crawl_data/신춘문예당선작/신춘_세계일보_소설.csv',index=False)
 
 
-## 서울신문
+''' 서울신문 '''
+
 url_list=['https://www.seoul.co.kr/news/newsView.php?id=20210101029002',
           'https://www.seoul.co.kr/news/newsView.php?id=20200102040001',
           'https://www.seoul.co.kr/news/newsView.php?id=20190101029004',
@@ -408,7 +411,8 @@ a=a[['refer','types','title','contents']]
 a.to_csv('/content/drive/MyDrive/AI_Bookathon/Crawl_data/신춘문예당선작/신춘_서울신문_소설.csv',index=False)
 
 
-## 조선일보
+''' 조선일보 '''
+
 url_list=['https://www.chosun.com/site/data/html_dir/2002/12/31/2002123170181.html',
           'https://www.chosun.com/site/data/html_dir/2002/12/31/2002123170182.html',
           'https://www.chosun.com/site/data/html_dir/2003/12/31/2003123170321.html',
@@ -468,7 +472,7 @@ a=a[['refer','types','title','contents']]
 a.to_csv('/content/drive/MyDrive/AI_Bookathon/Crawl_data/신춘문예당선작/신춘_조선일보_소설.csv',index=False)
 
 
-## 문화일보
+''' 문화일보 '''
 url_list=['http://www.munhwa.com/news/view.html?no=20050101010349300730010',
           'http://www.munhwa.com/news/view.html?no=2005010101035030073001',
           'http://www.munhwa.com/news/view.html?no=2006010201014730136007',
@@ -531,6 +535,7 @@ a.to_csv('/content/drive/MyDrive/AI_Bookathon/Crawl_data/신춘문예 당선작/
 
 
 # 한국산문 작가협회
+
 driver=chrome_setting()
 title=[]
 content=[]
@@ -588,6 +593,7 @@ a.to_csv('/content/drive/MyDrive/AI_Bookathon/Crawl_data/산문작가협회/산�
 
 
 # 재미수필 문학가협회
+
 driver=chrome_setting()
 
 driver.get('http://jaemisupil.com/recommend_articles/648')
@@ -606,6 +612,7 @@ a.to_csv('/content/drive/MyDrive/AI_Bookathon/Crawl_data/재미수필 문학가�
 
 
 # 수필.net
+
 driver=chrome_setting()
 title=[]
 content=[]
