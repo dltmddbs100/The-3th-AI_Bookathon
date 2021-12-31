@@ -14,7 +14,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-
+# setting chrome driver
 def chrome_setting():
   chrome_options = webdriver.ChromeOptions()
   chrome_options.add_argument('--headless')
@@ -23,12 +23,14 @@ def chrome_setting():
   driver = webdriver.Chrome('chromedriver', options=chrome_options)
   return driver
 
+def contain(data=None,column='contents',regex=None):
+  return data[data[column].str.contains(regex)][column]
+
 
 # 신춘문예작
 ## 동아일보
 
 driver=chrome_setting()
-
 title=[]
 content=[]
 
@@ -78,7 +80,6 @@ for i in range(a.shape[0]):
 
 a['refer']='동아일보'
 a['types']='단편소설'
-
 a=a[['refer','types','title','contents']]
 
 a.to_csv('/content/drive/MyDrive/AI_Bookathon/Crawl_data/신춘문예당선작/신춘_동아일보_소설.csv',index=False)
@@ -86,29 +87,27 @@ a.to_csv('/content/drive/MyDrive/AI_Bookathon/Crawl_data/신춘문예당선작/�
 
 ## 경향신문
 book_lists=['https://www.khan.co.kr/culture/book/article/200812311640185',
-       'https://www.khan.co.kr/culture/book/article/200912311708595',
-       'https://www.khan.co.kr/culture/book/article/201712312051005',
-       'https://www.khan.co.kr/culture/book/article/201812312107005',
-       'https://www.khan.co.kr/culture/book/article/201912312100005',
-       'https://www.khan.co.kr/culture/book/article/202012311940005',
-       'https://www.khan.co.kr/culture/book/article/201012311418085',
-       'https://www.khan.co.kr/culture/book/article/201201012012425',
-       'https://www.khan.co.kr/culture/book/article/201212312200165',
-       'https://www.khan.co.kr/culture/book/article/201412312035145',
-       'https://www.khan.co.kr/culture/book/article/201512312005295',
-       'https://www.khan.co.kr/culture/book/article/201701012126005',
-       'https://www.khan.co.kr/culture/book/article/200301021050461',
-       'https://www.khan.co.kr/culture/book/article/200301021051211',
-       'https://www.khan.co.kr/culture/book/article/200312311654071',
-       'https://www.khan.co.kr/culture/book/article/200312311648021',
-       'https://www.khan.co.kr/culture/book/article/200312311646241',
-       'https://www.khan.co.kr/culture/book/article/200312311644531',
-       'https://www.khan.co.kr/culture/book/article/200501031719171',
-       'https://www.khan.co.kr/culture/book/article/200501031721211']
-
+            'https://www.khan.co.kr/culture/book/article/200912311708595',
+            'https://www.khan.co.kr/culture/book/article/201712312051005',
+            'https://www.khan.co.kr/culture/book/article/201812312107005',
+            'https://www.khan.co.kr/culture/book/article/201912312100005',
+            'https://www.khan.co.kr/culture/book/article/202012311940005',
+            'https://www.khan.co.kr/culture/book/article/201012311418085',
+            'https://www.khan.co.kr/culture/book/article/201201012012425',
+            'https://www.khan.co.kr/culture/book/article/201212312200165',
+            'https://www.khan.co.kr/culture/book/article/201412312035145',
+            'https://www.khan.co.kr/culture/book/article/201512312005295',
+            'https://www.khan.co.kr/culture/book/article/201701012126005',
+            'https://www.khan.co.kr/culture/book/article/200301021050461',
+            'https://www.khan.co.kr/culture/book/article/200301021051211',
+            'https://www.khan.co.kr/culture/book/article/200312311654071',
+            'https://www.khan.co.kr/culture/book/article/200312311648021',
+            'https://www.khan.co.kr/culture/book/article/200312311646241',
+            'https://www.khan.co.kr/culture/book/article/200312311644531',
+            'https://www.khan.co.kr/culture/book/article/200501031719171',
+            'https://www.khan.co.kr/culture/book/article/200501031721211']
 
 driver=chrome_setting()
-
 title=[]
 content=[]
 
@@ -149,7 +148,6 @@ for i in range(a.shape[0]):
 
 a['refer']='경향신문'
 a['types']='단편소설'
-
 a=a[['refer','types','title','contents']]
 
 a.to_csv('/content/drive/MyDrive/AI_Bookathon/Crawl_data/신춘문예당선작/신춘_경향신문_소설.csv',index=False)
@@ -176,9 +174,7 @@ url_list=['http://m.kyeongin.com/view.php?key=20210104010006543',
           'http://m.kyeongin.com/view.php?key=313776',
           'http://m.kyeongin.com/view.php?key=288414']
 
-
 driver=chrome_setting()
-
 title=[]
 content=[]
 
@@ -195,7 +191,7 @@ for i in tqdm(url_list):
   title.append(tit) 
   content.append(con)
 
-
+# Parsing to DataFrame format and save
 a=pd.DataFrame({'title':title,'contents':content})
 
 for i in range(a.shape[0]):
@@ -214,13 +210,12 @@ for i in range(a.shape[0]):
 
 a['refer']='경인일보'
 a['types']='단편소설'
-
 a=a[['refer','types','title','contents']]
 
 a.to_csv('/content/drive/MyDrive/AI_Bookathon/Crawl_data/신춘문예당선작/신춘_경인일보_소설.csv',index=False)
 
 
-# 중앙 신인문학상
+## 중앙 신인문학상
 url_list=['https://www.joongang.co.kr/article/4137800#home',
           'https://www.joongang.co.kr/article/4137870#home',
           'https://www.joongang.co.kr/article/4137873#home',
@@ -259,7 +254,7 @@ for i in tqdm(url_list):
   title.append(tit) 
   content.append(con)
 
-
+# Parsing to DataFrame format and save
 a=pd.DataFrame({'title':title,'contents':content})
 
 for i in range(a.shape[0]):
@@ -279,16 +274,13 @@ for i in range(a.shape[0]):
 
 a['refer']='중앙신인문학상'
 a['types']='단편소설'
-
 a=a[['refer','types','title','contents']]
 
 a.to_csv('/content/drive/MyDrive/AI_Bookathon/Crawl_data/신춘문예당선작/신춘_중앙신인문학상_소설.csv',index=False)
 
 
 ## 세계일보
-
 driver=chrome_setting()
-
 title=[]
 content=[]
 
@@ -310,7 +302,7 @@ for i in tqdm(range(0,21)):
   title.append(tit) 
   content.append(con)
 
-
+# Parsing to DataFrame format and save
 a=pd.DataFrame({'title':title,'contents':content})
 
 for i in range(a.shape[0]):
@@ -334,14 +326,12 @@ for i in range(a.shape[0]):
 
 a['refer']='세계일보'
 a['types']='단편소설'
-
 a=a[['refer','types','title','contents']]
 
 a.to_csv('/content/drive/MyDrive/AI_Bookathon/Crawl_data/신춘문예당선작/신춘_세계일보_소설.csv',index=False)
 
 
 ## 서울신문
-
 url_list=['https://www.seoul.co.kr/news/newsView.php?id=20210101029002',
           'https://www.seoul.co.kr/news/newsView.php?id=20200102040001',
           'https://www.seoul.co.kr/news/newsView.php?id=20190101029004',
@@ -364,9 +354,7 @@ url_list=['https://www.seoul.co.kr/news/newsView.php?id=20210101029002',
           'https://nownews.seoul.co.kr/board/board.php?job=view&no=33&user=&bid=sinchun&key=subject&word=2002',
           'https://nownews.seoul.co.kr/board/board.php?job=view&no=27&user=&bid=sinchun&key=subject&word=2001']
 
-
 driver=chrome_setting()
-
 title=[]
 content=[]
 
@@ -396,7 +384,7 @@ for i in tqdm(url_list):
     title.append(tit) 
     content.append(con)
 
-
+# Parsing to DataFrame format and save
 a=pd.DataFrame({'title':title,'contents':content})
 
 for i in range(a.shape[0]):
@@ -415,14 +403,12 @@ for i in range(a.shape[0]):
 
 a['refer']='서울신문'
 a['types']='단편소설'
-
 a=a[['refer','types','title','contents']]
 
 a.to_csv('/content/drive/MyDrive/AI_Bookathon/Crawl_data/신춘문예당선작/신춘_서울신문_소설.csv',index=False)
 
 
 ## 조선일보
-
 url_list=['https://www.chosun.com/site/data/html_dir/2002/12/31/2002123170181.html',
           'https://www.chosun.com/site/data/html_dir/2002/12/31/2002123170182.html',
           'https://www.chosun.com/site/data/html_dir/2003/12/31/2003123170321.html',
@@ -441,11 +427,9 @@ url_list=['https://www.chosun.com/site/data/html_dir/2002/12/31/2002123170181.ht
           'https://www.chosun.com/site/data/html_dir/2019/12/31/2019123101415.html',
           'https://www.chosun.com/culture-life/2021/01/01/QSZ6OISPRRCITHQ2UAJS4SYGMQ/']
 
-
 driver=chrome_setting()
-
-#title=[]
-#content=[]
+title=[]
+content=[]
 
 for i in tqdm(url_list):
   driver.get(i)
@@ -460,6 +444,7 @@ for i in tqdm(url_list):
   title.append(tit) 
   content.append(con)
 
+# Parsing to DataFrame format and save
 a=pd.DataFrame({'title':title,'contents':content})
 
 for i in range(a.shape[0]):
@@ -478,7 +463,6 @@ for i in range(a.shape[0]):
 
 a['refer']='조선일보'
 a['types']='단편소설'
-
 a=a[['refer','types','title','contents']]
 
 a.to_csv('/content/drive/MyDrive/AI_Bookathon/Crawl_data/신춘문예당선작/신춘_조선일보_소설.csv',index=False)
@@ -505,7 +489,6 @@ url_list=['http://www.munhwa.com/news/view.html?no=20050101010349300730010',
           'http://www.munhwa.com/news/view.html?no=2021010401032712000001']
 
 driver=chrome_setting()
-
 title=[]
 content=[]
 
@@ -522,7 +505,7 @@ for i in tqdm(url_list):
   title.append(tit) 
   content.append(con)
 
-
+# Parsing to DataFrame format and save
 a=pd.DataFrame({'title':title,'contents':content})
 
 for i in range(a.shape[0]):
@@ -542,7 +525,6 @@ for i in range(a.shape[0]):
 
 a['refer']='문화일보'
 a['types']='단편소설'
-
 a=a[['refer','types','title','contents']]
 
 a.to_csv('/content/drive/MyDrive/AI_Bookathon/Crawl_data/신춘문예 당선작/신춘_문화일보_소설.csv',index=False)
@@ -550,7 +532,6 @@ a.to_csv('/content/drive/MyDrive/AI_Bookathon/Crawl_data/신춘문예 당선작/
 
 # 한국산문 작가협회
 driver=chrome_setting()
-
 title=[]
 content=[]
 
@@ -573,6 +554,7 @@ for i in tqdm(range(1,27)):
       title.append(tit) 
       content.append(con)
 
+# Parsing to DataFrame format and save
 a=pd.DataFrame({'title':title,'contents':content})
 a=a.drop(contain(a,'title',regex='응모|@').index).reset_index(drop=True)
 
@@ -606,7 +588,6 @@ a.to_csv('/content/drive/MyDrive/AI_Bookathon/Crawl_data/산문작가협회/산�
 
 
 # 재미수필 문학가협회
-
 driver=chrome_setting()
 
 driver.get('http://jaemisupil.com/recommend_articles/648')
@@ -615,6 +596,7 @@ content=driver.find_element_by_xpath('//*[@id="body_container"]/div/div[2]/div[2
 title=re.findall('\n {2,6}\d{1,2}\. *[\S ]+\n',content)
 contents=re.split('\n {2,6}\d{1,2}\. *[\S ]+\n',content)[1:]
 
+# Parsing to DataFrame format and save
 a=pd.DataFrame({'title':title,'contents':contents})
 a['refer']='재미수필 문학가협회'
 a['types']='반숙자_수필'
@@ -625,7 +607,6 @@ a.to_csv('/content/drive/MyDrive/AI_Bookathon/Crawl_data/재미수필 문학가�
 
 # 수필.net
 driver=chrome_setting()
-
 title=[]
 content=[]
 
@@ -649,8 +630,9 @@ for i in tqdm(range(1,58)):
       print('Page:', i)
       continue
 
-
+# Parsing to DataFrame format and save
 a=pd.DataFrame({'title':title,'contents':content})
+
 a['refer']='수필_net_뜰'
 a['types']='수필'
 a=a[['refer','types','title','contents']]
