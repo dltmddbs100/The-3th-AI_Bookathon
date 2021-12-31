@@ -1,3 +1,6 @@
+# This is a custom code on the server
+# only can apply to MindsLap server
+
 # data feeder method
 def _sent_custom_append(self, text, length):
  sentences = split_text_into_sentences(text)
