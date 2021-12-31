@@ -1,4 +1,4 @@
-# This is a custom code on the server
+# This is the custom code on the server
 # only can apply to MindsLap server
 
 # data feeder method
