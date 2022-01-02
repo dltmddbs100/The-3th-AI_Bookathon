@@ -68,7 +68,7 @@ generation시에 사용하는 sampling method 정도만 수정이 가능했습�
 => accumulation step 활용
 
 **2. 문서의 max sequnece length 편차가 심함 - max sequence length 초과시 내용의 뒷부분이 소실**  
-=> 로컬에서 sentence tokenizer 구현해 train data가 max sequnce length를 초과하지 않도록 여러 데이터 단위로 분할
+=> 로컬에서 sentence tokenizer 구현해 train data가 max sequence length를 초과하지 않도록 여러 데이터 단위로 분할
 ```python
 def sent_tokenizer(data,max_len):
   final_list=[]
