@@ -1,6 +1,6 @@
 # The 3th AI x Bookathon (2021)
 
-**Team: AItist ([이승윤](https://github.com/dltmddbs100/), [장민석](http.github.com/jangsus1), 성민경, 이지현)**
+**Team: AItist ([이승윤](https://github.com/dltmddbs100/), [장민석](http://github.com/jangsus1), 성민경, 이지현)**
 
 <img src="https://user-images.githubusercontent.com/55730591/147868801-5c42edb0-5eb4-414e-bc16-4e057b587766.jpg" width="800" height="400"/>
      
